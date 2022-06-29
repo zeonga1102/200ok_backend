@@ -8,7 +8,3 @@ from dormitory.models import Answer
 admin.site.register(Dormitory)
 admin.site.register(Question)
 admin.site.register(Answer)
-
-
-
-
