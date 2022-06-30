@@ -5,3 +5,6 @@ class Board(models.Model):
     content = models.CharField(max_length=250)
     author = models.ForeignKey("user.User", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.author} : {self.content}'
