@@ -6,7 +6,7 @@ from django.utils import timezone, dateformat
 
 
 class DormitoriesSerializer(serializers.ModelSerializer):
-    users = serializers.SerializerMethodField(read_only=True)
+    users = serializers.SerializerMethodField()
 
     def get_users(self, obj):
         return obj.userinfo_set.filter(dormitory=obj.id).values()
@@ -29,6 +29,10 @@ class DormitorySerializer(serializers.ModelSerializer):
 
 class BoardSerializer(serializers.ModelSerializer):
     icon = serializers.SerializerMethodField(read_only=True)
+    author_name = serializers.SerializerMethodField(read_only=True)
+
+    def get_author_name(self, obj):
+        return User.objects.get(username=obj.author)
 
     def get_icon(self, obj):
         try:
@@ -49,6 +53,7 @@ class BoardSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         cemment = Board(**validated_data)
+        print(cemment)
         cemment.save()
 
         return validated_data

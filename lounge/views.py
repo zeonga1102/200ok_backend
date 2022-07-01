@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
+from django.shortcuts import render, redirect
 
 from .serializers import BoardSerializer, LoungeSerializer, DormitorySerializer, DormitoriesSerializer
 from .models import Board
@@ -48,16 +49,17 @@ class LoungeView(APIView):
             "board": board_serializer
         }
 
-        return Response(lounge_data, status=status.HTTP_200_OK)
+        return render(request, 'lounge.html', {"lounge_data":lounge_data}, status=status.HTTP_200_OK)
 
     # TODO 게시글 쓰기
     def post(self, request):
-        request.data['author'] = request.user.id
-        board_serializer = BoardSerializer(data=request.data)
+        request_data = request.data.copy()
+        request_data['author'] = request.user.id
+        board_serializer = BoardSerializer(data=request_data)
 
         if board_serializer.is_valid():
             board_serializer.save()
-            return Response({"message": "정상"}, status=status.HTTP_200_OK)
+            return redirect('lounge')
 
         return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
