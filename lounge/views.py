@@ -11,7 +11,7 @@ from dormitory.models import Dormitory
 
 # Create your views here.
 class LoungeView(APIView):
-        permission_classes = [permissions.AllowAny] 
+        permission_classes = [permissions.IsAuthenticated]
 
         # TODO  라운지 페이지 띄우기
         def get(self, request):
@@ -44,12 +44,34 @@ class LoungeView(APIView):
 
         # TODO 게시글 쓰기
         def post(self, request):
-                return Response({'message': 'post method!!'}, status=status.HTTP_200_OK)
+                request.data['author'] = request.user.id
+                board_serializer = BoardSerializer(data=request.data)
+
+                if board_serializer.is_valid():
+                        board_serializer.save()
+                        return Response({"message": "정상"}, status=status.HTTP_200_OK)
+        
+                return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         # TODO 게시글 수정
-        def put(self, request):
-                return Response({'message': 'put method!!'}, status=status.HTTP_200_OK)
+        def put(self, request, obj_id):
+                comment = Board.objects.get(id=obj_id)
+                board_serializer = BoardSerializer(comment, data=request.data, partial=True)
+                print(f'author: {comment.author}, user: {request.user.username}')
+
+                if comment.author == request.user:
+                        if board_serializer.is_valid():
+                                board_serializer.save()
+                                return Response({"message": "정상"}, status=status.HTTP_200_OK) 
+                        return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'message':'이 글을 작성한 사람이 아닙니다!'}, status=status.HTTP_400_BAD_REQUEST)
 
         # TODO 게시글 삭제
-        def delete(self, request):
-                return Response({'message': 'delete method!!'}, status=status.HTTP_200_OK)
+        def delete(self, request, obj_id):
+                comment = Board.objects.get(id=obj_id)
+
+                if comment.author == request.user:
+                        comment.delete()
+                        return Response({"message": "정상"}, status=status.HTTP_200_OK)
+                
+                return Response({'message':'이 글을 작성한 사람이 아닙니다!'}, status=status.HTTP_400_BAD_REQUEST)
