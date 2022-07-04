@@ -25,23 +25,23 @@ class UserView(APIView):
             return Response({"messages" : "가입 실패"})
 
 
-class UserAPIView(APIView):
+# class UserAPIView(APIView):
 
-    # 로그인
-    def post(self, request):
-        # username = request.data.get('username', '')
-        # password = request.data.get('password', '')
+#     # 로그인
+#     def post(self, request):
+#         # username = request.data.get('username', '')
+#         # password = request.data.get('password', '')
 
-        # user = authenticate(request, username=username, password=password)
-        user = authenticate(request, **request.data)
-        if not user:
-            return Response({"error": "잘못된 아이디 혹은 비밀번호입니다."},
-                            status=status.HTTP_400_BAD_REQUEST)
-        login(request, user)
+#         # user = authenticate(request, username=username, password=password)
+#         user = authenticate(request, **request.data)
+#         if not user:
+#             return Response({"error": "잘못된 아이디 혹은 비밀번호입니다."},
+#                             status=status.HTTP_400_BAD_REQUEST)
+#         login(request, user)
 
-        return Response({"messages": "로그인 성공"})
+#         return Response({"messages": "로그인 성공"})
 
-    # 로그아웃
-    def delete(self, request):
-        logout(request)
-        return Response({"messages": "로그아웃  성공"})
+#     # 로그아웃
+#     def delete(self, request):
+#         logout(request)
+#         return Response({"messages": "로그아웃  성공"})
