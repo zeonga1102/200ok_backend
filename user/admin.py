@@ -5,6 +5,8 @@ from user.models import UserInfo
 
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
+from user.models import OriginalPic
+
 
 class UserAdmin(BaseUserAdmin):
     list_display = ('id', 'username', 'fullname',)
@@ -28,3 +30,4 @@ class UserAdmin(BaseUserAdmin):
 # Register your models here.
 admin.site.register(UserModel, UserAdmin)
 admin.site.register(UserInfo)
+admin.site.register(OriginalPic)
