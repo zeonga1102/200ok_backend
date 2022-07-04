@@ -10,7 +10,7 @@ from user.models import OriginalPic
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ["username", "password", "fullname", ]
+        fields = ["fullname", "username", "password"]
 
     def create(self, validated_data):
         password = validated_data.pop("password", None)
