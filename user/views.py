@@ -11,6 +11,7 @@ from user.serializers import UserSerializer
 from deeplearning.deeplearning_make_portrait import make_portrait
 from multiprocessing import Process, Queue
 from user.serializers import OriginalPicSerializer
+from rest_framework.permissions import IsAuthenticated
 # from dormitory.models import Question
 
 
@@ -33,6 +34,7 @@ class UserView(APIView):
 q = Queue()
 p = None
 class MainView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, requeset):
         return Response({'msg': 'success'})
@@ -40,8 +42,8 @@ class MainView(APIView):
     def post(self, request):
         global q, p
 
-        request.data['user'] = request.user.id
         print(request.data)
+        request.data['user'] = request.user.id
 
         original_pic_serializer = OriginalPicSerializer(data=request.data)
 
