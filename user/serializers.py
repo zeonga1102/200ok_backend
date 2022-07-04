@@ -4,6 +4,8 @@ from rest_framework import serializers
 
 from user.models import User as UserModel
 
+from user.models import OriginalPic
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,3 +20,9 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class OriginalPicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OriginalPic
+        fields = ["user", "pic"]
