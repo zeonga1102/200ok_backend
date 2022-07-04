@@ -10,18 +10,16 @@ import numpy as np
 from skimage.transform import resize
 from skimage import img_as_ubyte
 import torch
-from sync_batchnorm import DataParallelWithCallback
+from .sync_batchnorm import DataParallelWithCallback
 
-from modules.generator import OcclusionAwareGenerator
-from modules.keypoint_detector import KPDetector
-from animate import normalize_kp
+from .modules.generator import OcclusionAwareGenerator
+from .modules.keypoint_detector import KPDetector
+from .animate import normalize_kp
 from scipy.spatial import ConvexHull
 
 import cv2
 
-
-if sys.version_info[0] < 3:
-    raise Exception("You must use Python 3 or higher. Recommended version is Python 3.7")
+import easydict
 
 def load_checkpoints(config_path, checkpoint_path, cpu=False):
 
@@ -79,60 +77,22 @@ def make_animation(source_image, driving_video, generator, kp_detector, relative
             predictions.append(np.transpose(out['prediction'].data.cpu().numpy(), [0, 2, 3, 1])[0])
     return predictions
 
-def find_best_frame(source, driving, cpu=False):
-    import face_alignment
 
-    def normalize_kp(kp):
-        kp = kp - kp.mean(axis=0, keepdims=True)
-        area = ConvexHull(kp[:, :2]).volume
-        area = np.sqrt(area)
-        kp[:, :2] = kp[:, :2] / area
-        return kp
+def make_portrait(q, img_path):
+    opt = easydict.EasyDict({
+        'config': 'deeplearning/config/vox-256.yaml',
+        'checkpoint': 'vox-cpk.pth.tar',
+        'result_video': 'result.mp4',
+        'best_frame': None,
+        'cpu': True,
+        'relative': True,
 
-    fa = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=True,
-                                      device='cpu' if cpu else 'cuda')
-    kp_source = fa.get_landmarks(255 * source)[0]
-    kp_source = normalize_kp(kp_source)
-    norm  = float('inf')
-    frame_num = 0
-    for i, image in tqdm(enumerate(driving)):
-        kp_driving = fa.get_landmarks(255 * image)[0]
-        kp_driving = normalize_kp(kp_driving)
-        new_norm = (np.abs(kp_source - kp_driving) ** 2).sum()
-        if new_norm < norm:
-            norm = new_norm
-            frame_num = i
-    return frame_num
-
-
-def make_portrait():
-    parser = ArgumentParser()
-    parser.add_argument("--config", help="path to config")
-    parser.add_argument("--checkpoint", default='vox-cpk.pth.tar', help="path to checkpoint to restore")
-
-    parser.add_argument("--source_image", default='sup-mat/source.png', help="path to source image")
-    parser.add_argument("--driving_video", default='sup-mat/source.png', help="path to driving video")
-    parser.add_argument("--result_video", default='result.mp4', help="path to output")
-
-    parser.add_argument("--relative", dest="relative", action="store_true", help="use relative or absolute keypoint coordinates")
-    parser.add_argument("--adapt_scale", dest="adapt_scale", action="store_true", help="adapt movement scale based on convex hull of keypoints")
-
-    parser.add_argument("--find_best_frame", dest="find_best_frame", action="store_true", 
-                        help="Generate from the frame that is the most alligned with source. (Only for faces, requires face_aligment lib)")
-
-    parser.add_argument("--best_frame", dest="best_frame", type=int, default=None,  
-                        help="Set frame to start from.")
-
-    parser.add_argument("--cpu", dest="cpu", action="store_true", help="cpu mode.")
-
-    parser.set_defaults(config='user/config/vox-256.yaml')
-    parser.set_defaults(cpu=True)
-    parser.set_defaults(relative=True)
-    parser.set_defaults(adapt_scale=False)
-
-    opt = parser.parse_args()
-
-    source_image = imageio.imread('03.jpg')
+        'adapt_scale': False,
+        'find_best_frame': False
+    })
+    
+    # source_image = imageio.imread('https://blog.kakaocdn.net/dn/SJOlU/btrnjc5wccD/2tVeCAdG9UVWi3fsrqVYxk/img.jpg')
+    source_image = imageio.imread(img_path)
     reader = imageio.get_reader('04.mp4')
 
     fps = reader.get_meta_data()['fps']
@@ -148,37 +108,18 @@ def make_portrait():
     driving_video = [resize(frame, (256, 256))[..., :3] for frame in driving_video]
     generator, kp_detector = load_checkpoints(config_path=opt.config, checkpoint_path=opt.checkpoint, cpu=opt.cpu)
 
-    if opt.find_best_frame or opt.best_frame is not None:
-        i = opt.best_frame if opt.best_frame is not None else find_best_frame(source_image, driving_video, cpu=opt.cpu)
-        print ("Best frame: " + str(i))
-        driving_forward = driving_video[i:]
-        driving_backward = driving_video[:(i+1)][::-1]
-        predictions_forward = make_animation(source_image, driving_forward, generator, kp_detector, relative=opt.relative, adapt_movement_scale=opt.adapt_scale, cpu=opt.cpu)
-        predictions_backward = make_animation(source_image, driving_backward, generator, kp_detector, relative=opt.relative, adapt_movement_scale=opt.adapt_scale, cpu=opt.cpu)
-        predictions = predictions_backward[::-1] + predictions_forward[1:]
-    else:
-        predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=opt.relative, adapt_movement_scale=opt.adapt_scale, cpu=opt.cpu)
-    imageio.mimsave(opt.result_video, [img_as_ubyte(frame) for frame in predictions], fps=fps)
-
-
-    net = cv2.dnn.readNetFromTorch('user/painting_model/style5.t7')
-
-    cap = cv2.VideoCapture(opt.result_video)
-
-    width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-    height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+    predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=opt.relative, adapt_movement_scale=opt.adapt_scale, cpu=opt.cpu)
+   
+    net = cv2.dnn.readNetFromTorch('deeplearning/painting_model/style5.t7')
 
     fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-    out = cv2.VideoWriter('output.avi', fourcc, 30.0, (int(width), int(height)))
-
-    while True:
-        ret, img = cap.read()
-
-        if ret == False:
-            break
+    out = cv2.VideoWriter('output.avi', fourcc, 30.0, (256, 256))
+    
+    for frame in predictions:
+        frame = img_as_ubyte(frame)
 
         MEAN_VALUE = [103.939, 116.779, 123.680]
-        blob = cv2.dnn.blobFromImage(img, mean=MEAN_VALUE)
+        blob = cv2.dnn.blobFromImage(frame, mean=MEAN_VALUE)
 
         net.setInput(blob)
         output = net.forward()
@@ -189,24 +130,8 @@ def make_portrait():
         output = np.clip(output, 0, 255)
         output = output.astype('uint8')
 
-        cv2.imshow('result', output)
         out.write(output)
-        if cv2.waitKey(1) == ord('q'):
-            break
-    cap.release()                       # 캡쳐 자원 반납
+
     cv2.destroyAllWindows()
+    q.put('end')
 
-    MEAN_VALUE = [103.939, 116.779, 123.680]
-    blob = cv2.dnn.blobFromImage(img, mean=MEAN_VALUE)
-
-    net.setInput(blob)
-    output = net.forward()
-
-    output = output.squeeze().transpose((1, 2, 0))
-
-    output += MEAN_VALUE
-    output = np.clip(output, 0, 255)
-    output = output.astype('uint8')
-
-    cv2.imshow('result', output)
-    cv2.waitKey(0)
