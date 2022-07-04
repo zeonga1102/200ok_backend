@@ -4,5 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.LoungeView.as_view(), name='lounge'),
-    path('<obj_id>/', views.LoungeView.as_view(), name='lounge_comment_update'),
+    path('post/', views.LoungeView.as_view(), name='comment_post'),
+    path('edit/<int:obj_id>/', views.LoungeView.as_view(), name='comment_edit'),
+    path('delete/<int:obj_id>/', views.LoungeView.as_view(), name='comment_delete'),
 ]

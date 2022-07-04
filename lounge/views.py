@@ -1,3 +1,4 @@
+import django.apps
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
@@ -11,6 +12,7 @@ from dormitory.models import Dormitory
 
 class LoungeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
 
     # TODO  라운지 페이지 띄우기
     def get(self, request):
@@ -49,7 +51,7 @@ class LoungeView(APIView):
             "board": board_serializer
         }
 
-        return render(request, 'lounge.html', {"lounge_data":lounge_data}, status=status.HTTP_200_OK)
+        return render(request, 'lounge/lounge.html', {"lounge_data":lounge_data}, status=status.HTTP_200_OK)
 
     # TODO 게시글 쓰기
     def post(self, request):
@@ -72,7 +74,7 @@ class LoungeView(APIView):
         if comment.author == request.user:
             if board_serializer.is_valid():
                 board_serializer.save()
-                return Response({"message": "정상"}, status=status.HTTP_200_OK)
+                return redirect('lounge')
             return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response({'message': '이 글을 작성한 사람이 아닙니다!'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -82,6 +84,6 @@ class LoungeView(APIView):
 
         if comment.author == request.user:
             comment.delete()
-            return Response({"message": "정상"}, status=status.HTTP_200_OK)
+            return redirect('lounge')
 
         return Response({'message': '이 글을 작성한 사람이 아닙니다!'}, status=status.HTTP_400_BAD_REQUEST)
