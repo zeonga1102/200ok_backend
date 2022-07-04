@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-
     'dormitory',
     'user',
     'lounge',
@@ -139,8 +138,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%y.%m.%d %H:%M:%S",
     'DEFAULT_PERMISSION_CLASSES': [ # 기본적인 view 접근 권한 지정
         'rest_framework.permissions.AllowAny',
     ],
