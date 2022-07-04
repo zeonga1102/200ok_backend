@@ -144,8 +144,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [ # session 혹은 token을 인증 할 클래스 설정
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
         # simplejwt 추가
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         # pip install djangorestframework-simplejwt 인스톨 코드
@@ -197,3 +197,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5500",
     "http://127.0.0.1:5500",
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
