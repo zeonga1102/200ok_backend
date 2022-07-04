@@ -51,17 +51,19 @@ class LoungeView(APIView):
             "board": board_serializer
         }
 
-        return render(request, 'lounge/lounge.html', {"lounge_data":lounge_data}, status=status.HTTP_200_OK)
+        return Response(lounge_data, status=status.HTTP_200_OK)
 
     # TODO 게시글 쓰기
     def post(self, request):
-        request_data = request.data.copy()
-        request_data['author'] = request.user.id
-        board_serializer = BoardSerializer(data=request_data)
+        # request_data = request.data.copy()
+        # request_data['author'] = request.user.id
+        request.data['author'] = request.user.id
+        board_serializer = BoardSerializer(data=request.data)
 
         if board_serializer.is_valid():
             board_serializer.save()
-            return redirect('lounge')
+            # return redirect('lounge')
+            return Response(board_serializer, status=status.HTTP_200_OK)
 
         return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -74,7 +76,8 @@ class LoungeView(APIView):
         if comment.author == request.user:
             if board_serializer.is_valid():
                 board_serializer.save()
-                return redirect('lounge')
+                # return redirect('lounge')
+                return Response(board_serializer, status=status.HTTP_200_OK)
             return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response({'message': '이 글을 작성한 사람이 아닙니다!'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -84,6 +87,8 @@ class LoungeView(APIView):
 
         if comment.author == request.user:
             comment.delete()
-            return redirect('lounge')
+            # return redirect('lounge')
+            return Response({'message': '살ㄹ려줘ㅓ!'}, status=status.HTTP_200_OK)
+            
 
         return Response({'message': '이 글을 작성한 사람이 아닙니다!'}, status=status.HTTP_400_BAD_REQUEST)
