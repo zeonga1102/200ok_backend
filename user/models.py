@@ -71,3 +71,6 @@ class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
+class OriginalPic(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    pic = models.FileField(upload_to='original/')
