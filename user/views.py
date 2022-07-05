@@ -12,7 +12,6 @@ from deeplearning.deeplearning_make_portrait import make_portrait
 from multiprocessing import Process, Queue
 from user.serializers import OriginalPicSerializer
 from rest_framework.permissions import IsAuthenticated
-# from dormitory.models import Question
 
 
 class UserView(APIView):
@@ -65,8 +64,6 @@ class MainView(APIView):
 class InfoView(APIView):
 
     def get(self, request):
-        # questions = Question.objects.all()
-        # question_serializer = QuestionSerializer(questions, many=True).data
         return Response({'msg': 'get'}, status=status.HTTP_200_OK)
 
     def post(self, request):
