@@ -111,10 +111,8 @@ def make_portrait(q, img_path):
     predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=opt.relative, adapt_movement_scale=opt.adapt_scale, cpu=opt.cpu)
    
     net = cv2.dnn.readNetFromTorch('deeplearning/painting_model/style5.t7')
-
-    fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-    out = cv2.VideoWriter('output.avi', fourcc, 30.0, (256, 256))
     
+    new_frames = []
     for frame in predictions:
         frame = img_as_ubyte(frame)
 
@@ -130,7 +128,11 @@ def make_portrait(q, img_path):
         output = np.clip(output, 0, 255)
         output = output.astype('uint8')
 
-        out.write(output)
+        output = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
+
+        new_frames.append(output)
+
+    imageio.mimsave('test.gif', new_frames, fps=fps)
 
     cv2.destroyAllWindows()
     q.put('end')
