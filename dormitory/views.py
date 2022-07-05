@@ -3,8 +3,9 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import render
-from dormitory.serializers import DormUserSerializer
+from dormitory.serializers import DormUserSerializer, QuestionSerializer
 from user.models import User, UserInfo
+from dormitory.models import Question
 
 
 class DormitoryView(APIView):
@@ -14,3 +15,13 @@ class DormitoryView(APIView):
         user = request.user
 
         return Response(DormUserSerializer(user).data)
+
+
+class Questionview(APIView):
+    # permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        questions = Question.objects.all()
+        question_serializer = QuestionSerializer(questions, many=True).data
+
+        return Response({'questions': question_serializer}, status=status.HTTP_200_OK)
