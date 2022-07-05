@@ -22,8 +22,6 @@ import cv2
 import easydict
 
 import random
-import boto3
-import smart_open
 
 def load_checkpoints(config_path, checkpoint_path, cpu=False):
 
