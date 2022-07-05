@@ -91,7 +91,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
     dormitory_name = serializers.SerializerMethodField(read_only=True)
 
     def get_portrait(self, obj):
-        portrait = obj.userinfo.portrait.url
+        portrait = obj.userinfo.portrait
         return portrait
 
     def get_dormitory_name(self, obj):
