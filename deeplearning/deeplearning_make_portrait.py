@@ -21,6 +21,8 @@ import cv2
 
 import easydict
 
+import random
+
 def load_checkpoints(config_path, checkpoint_path, cpu=False):
 
     with open(config_path) as f:
@@ -93,7 +95,10 @@ def make_portrait(q, img_path):
     
     # source_image = imageio.imread('https://blog.kakaocdn.net/dn/SJOlU/btrnjc5wccD/2tVeCAdG9UVWi3fsrqVYxk/img.jpg')
     source_image = imageio.imread(img_path)
-    reader = imageio.get_reader('04.mp4')
+
+    rand = random.randrange(1, 5)
+    video_path = f'deeplearning/original_video/{rand}.mp4'
+    reader = imageio.get_reader(video_path)
 
     fps = reader.get_meta_data()['fps']
     driving_video = []
@@ -110,7 +115,10 @@ def make_portrait(q, img_path):
 
     predictions = make_animation(source_image, driving_video, generator, kp_detector, relative=opt.relative, adapt_movement_scale=opt.adapt_scale, cpu=opt.cpu)
    
-    net = cv2.dnn.readNetFromTorch('deeplearning/painting_model/style5.t7')
+    rand = random.randrange(1, 6)
+    model_path = f'deeplearning/painting_model/style_model{rand}.t7'
+
+    net = cv2.dnn.readNetFromTorch(model_path)
     
     new_frames = []
     for frame in predictions:
