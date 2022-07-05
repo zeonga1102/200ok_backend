@@ -69,7 +69,7 @@ class LoungeView(APIView):
         if board_serializer.is_valid():
             board_serializer.save()
             # return redirect('lounge')
-            return Response(board_serializer, status=status.HTTP_200_OK)
+            return Response(board_serializer.data, status=status.HTTP_200_OK)
 
         return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

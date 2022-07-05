@@ -11,7 +11,7 @@ class DormitoriesSerializer(serializers.ModelSerializer):
 
     def get_users(self, obj):
         users = obj.userinfo_set.filter(dormitory=obj.id).values()
-        portrait = obj.userinfo_set.filter(dormitory=obj.id)[0].portrait.url
+        portrait = obj.userinfo_set.filter(dormitory=obj.id)[0].portrait
         users.portrait = portrait
         return users
 
@@ -91,7 +91,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
     dormitory_name = serializers.SerializerMethodField(read_only=True)
 
     def get_portrait(self, obj):
-        portrait = obj.userinfo.portrait.url
+        portrait = obj.userinfo.portrait
         return portrait
 
     def get_dormitory_name(self, obj):
