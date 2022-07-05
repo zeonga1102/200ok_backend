@@ -7,5 +7,4 @@ urlpatterns = [
     path('post/', views.LoungeView.as_view(), name='comment_post'),
     path('edit/<int:obj_id>/', views.LoungeView.as_view(), name='comment_edit'),
     path('delete/<int:obj_id>/', views.LoungeView.as_view(), name='comment_delete'),
-    # path('<int:obj_id>/', views.LoungeView.as_view(), name='comment_update'),
 ]
