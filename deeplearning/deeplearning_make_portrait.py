@@ -22,6 +22,8 @@ import cv2
 import easydict
 
 import random
+import boto3
+import smart_open
 
 def load_checkpoints(config_path, checkpoint_path, cpu=False):
 
@@ -80,7 +82,7 @@ def make_animation(source_image, driving_video, generator, kp_detector, relative
     return predictions
 
 
-def make_portrait(q, img_path):
+def make_portrait(q, img_path, user_id):
     opt = easydict.EasyDict({
         'config': 'deeplearning/config/vox-256.yaml',
         'checkpoint': 'vox-cpk.pth.tar',
@@ -93,7 +95,6 @@ def make_portrait(q, img_path):
         'find_best_frame': False
     })
     
-    # source_image = imageio.imread('https://blog.kakaocdn.net/dn/SJOlU/btrnjc5wccD/2tVeCAdG9UVWi3fsrqVYxk/img.jpg')
     source_image = imageio.imread(img_path)
 
     rand = random.randrange(1, 5)
@@ -140,8 +141,14 @@ def make_portrait(q, img_path):
 
         new_frames.append(output)
 
-    imageio.mimsave('test.gif', new_frames, fps=fps)
+    filename = f'{user_id}.gif'
+    imageio.mimsave(filename, new_frames, fps=fps)
+
+    os.system(f'aws s3 cp {filename} s3://200okbucket --acl public-read')
+    os.system(f'rm {filename}')
+
+    portrait_url = f'https://200okbucket.s3.ap-northeast-2.amazonaws.com/{user_id}.gif'
 
     cv2.destroyAllWindows()
-    q.put('end')
+    q.put(portrait_url)
 
