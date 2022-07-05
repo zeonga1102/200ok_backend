@@ -44,7 +44,7 @@ class MainView(APIView):
     
     def post(self, request):
         global q, p
-
+        print(request.data)
         user_id = request.user.id
         request.data['user'] = user_id
         print(request.data)
@@ -55,12 +55,12 @@ class MainView(APIView):
         s3 = boto3.client('s3')
         s3.put_object(
             ACL="public-read",
-            Bucket="200okbucket",
+            Bucket="my-sparta",
             Body=pic,
             Key=filename,
             ContentType=pic.content_type)
 
-        url = f'https://200okbucket.s3.ap-northeast-2.amazonaws.com/{filename}'
+        url = f'https://my-sparta.s3.ap-northeast-2.amazonaws.com/{filename}'
         request.data['pic'] = url
 
         original_pic_serializer = OriginalPicSerializer(data=request.data)
@@ -96,6 +96,7 @@ class InfoView(APIView):
             print(request.data)
 
             userinfo_serializer = UserInfoSerializer(data=request.data)
+            print(userinfo_serializer)
 
             if userinfo_serializer.is_valid():
                 userinfo_serializer.save()
