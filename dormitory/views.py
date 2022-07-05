@@ -18,7 +18,7 @@ class DormitoryView(APIView):
 
 
 class Questionview(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         questions = Question.objects.all()
