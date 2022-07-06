@@ -73,7 +73,7 @@ class MainView(APIView):
 
             return Response({'msg': 'send'}, status=status.HTTP_200_OK)
 
-        print(original_pic_serializer.error_messages)
+        print(original_pic_serializer.errors)
 
         return Response({"error": "failed"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -101,5 +101,5 @@ class InfoView(APIView):
             if userinfo_serializer.is_valid():
                 userinfo_serializer.save()
                 return Response({'msg': 'success'}, status=status.HTTP_200_OK)
-        print(userinfo_serializer.error_messages)
+        print(userinfo_serializer.errors)
         return Response({'error': 'failed'}, status=status.HTTP_400_BAD_REQUEST)
