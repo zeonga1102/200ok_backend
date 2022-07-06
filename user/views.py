@@ -33,9 +33,6 @@ q = Queue()
 p = None
 class MainView(APIView):
     permission_classes = [IsAuthenticated]
-
-    def get(self, requeset):
-        return Response({'msg': 'success'})
     
     def post(self, request):
         global q, p
@@ -74,9 +71,6 @@ class MainView(APIView):
 
 class InfoView(APIView):
     permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        return Response({'msg': 'get'}, status=status.HTTP_200_OK)
 
     def post(self, request):
         global p, q
