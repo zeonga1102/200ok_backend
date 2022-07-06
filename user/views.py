@@ -73,6 +73,7 @@ class MainView(APIView):
 
 
 class InfoView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         return Response({'msg': 'get'}, status=status.HTTP_200_OK)
