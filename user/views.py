@@ -1,21 +1,17 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import permissions, status
-from user import serializers
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
+from multiprocessing import Process, Queue
+import boto3
+
+from user import serializers
 from user.serializers import UserSerializer
+from user.serializers import OriginalPicSerializer
+from user.serializers import UserInfoSerializer
 
 from deeplearning.deeplearning_make_portrait import make_portrait
-from multiprocessing import Process, Queue
-from user.serializers import OriginalPicSerializer
-from rest_framework.permissions import IsAuthenticated
-from .models import OriginalPic
-from .serializers import UserInfoSerializer
-
-import boto3
 
 
 class UserView(APIView):
@@ -27,7 +23,6 @@ class UserView(APIView):
         if user_serializer.is_valid(raise_exception=True):
             user_serializer.save()
             return Response({"messages" : "가입 성공"})
-            # return Response(user_serializer.data, status=status.HTTP_200_OK)
 
         else:
             print(serializers.errors)
@@ -44,13 +39,12 @@ class MainView(APIView):
     
     def post(self, request):
         global q, p
-        print(request.data)
+        
         user_id = request.user.id
         request.data['user'] = user_id
-        print(request.data)
+        
         pic = request.data.pop('pic')[0]
         filename = pic.name
-        print(filename)
 
         s3 = boto3.client('s3')
         s3.put_object(
@@ -78,7 +72,6 @@ class MainView(APIView):
         return Response({"error": "failed"}, status=status.HTTP_400_BAD_REQUEST)
 
 
-
 class InfoView(APIView):
 
     def get(self, request):
@@ -86,14 +79,12 @@ class InfoView(APIView):
 
     def post(self, request):
         global p, q
-        print(request.data)
+        
         if p is not None:
             p.join()
 
             request.data['user'] = request.user.id
             request.data['portrait'] = q.get()
-
-            print(request.data)
 
             userinfo_serializer = UserInfoSerializer(data=request.data)
             print(userinfo_serializer)
@@ -101,5 +92,8 @@ class InfoView(APIView):
             if userinfo_serializer.is_valid():
                 userinfo_serializer.save()
                 return Response({'msg': 'success'}, status=status.HTTP_200_OK)
+
         print(userinfo_serializer.errors)
+
         return Response({'error': 'failed'}, status=status.HTTP_400_BAD_REQUEST)
+        

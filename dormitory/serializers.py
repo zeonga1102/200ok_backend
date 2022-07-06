@@ -26,6 +26,7 @@ class DormUserSerializer(serializers.ModelSerializer):
 
     def get_portrait(self, obj):
         return obj.userinfo.portrait
+
     class Meta:
         model = User
         fields = ['id', 'fullname', 'dormitory_id', 'dormitory', 'portrait', 'birthday', 'join_date']
@@ -40,3 +41,5 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ["question", "answers"]
+
+        
