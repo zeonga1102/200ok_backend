@@ -4,7 +4,7 @@
 해리포터 컨셉, 사람 사진을 초상화처럼 스타일을 변경하고 움직임을 추가해서 움직이는 초상화를 만들고 머신러닝을 통해 기숙사를 분류해주는 웹사이트
 
 ***
-# ⭐Intro
+# Intro
 * **Team** <a href="https://github.com/cmjcum"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 김동근 <a href="https://github.com/yinmsk"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 노을 <a href="https://github.com/minkkky"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
@@ -12,7 +12,7 @@
 이현경 <a href="https://github.com/LULULALA2"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 * **S.A** <a href="https://cold-charcoal.tistory.com/108">블로그로 이동(☞ﾟヮﾟ)☞</a>
 ***
-# 🪐Project
+# Project
 ### Frontend Repository
 <a href="https://github.com/cmjcum/200ok_frontend"/></a>
 ### Feature
