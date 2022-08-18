@@ -10,7 +10,7 @@
 노을 <a href="https://github.com/minkkky"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 이정아 <a href="https://github.com/zeonga1102"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 이현경 <a href="https://github.com/LULULALA2"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
-* **S.A** <a href="https://cold-charcoal.tistory.com/108">블로그로 이동(☞ﾟヮﾟ)☞</a>
+* **S.A** <a href="https://cold-charcoal.tistory.com/108">블로그로 이동</a>
 ***
 # Project
 ### Frontend Repository
@@ -30,9 +30,9 @@
 ![4](https://user-images.githubusercontent.com/104487608/185345234-a19afc70-d251-4d6c-941c-941138dd4aa8.png)
 ![5](https://user-images.githubusercontent.com/104487608/185346135-f155e0a7-9f1b-471e-96a6-bfbe991b1305.png)
 
-<a href="https://cold-charcoal.tistory.com/117">영상 보러 가기(☞ﾟヮﾟ)☞</a>
+<a href="https://cold-charcoal.tistory.com/117">영상 보러 가기</a>
 ### API
-<a href="https://typingmylife.notion.site/MakeMigrations-API-53526cc465344be98ab4e786e487414f">노션 페이지로 이동(☞ﾟヮﾟ)☞</a>
+<a href="https://typingmylife.notion.site/MakeMigrations-API-53526cc465344be98ab4e786e487414f">노션 페이지로 이동</a>
 ### ERD
 ![make migrations (6)](https://user-images.githubusercontent.com/104487608/185342143-bfb69da1-2719-4df0-bfa0-fd3353a82036.png)
 ***
