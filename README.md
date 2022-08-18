@@ -23,8 +23,6 @@
 * S3를 이용한 파일 처리
 * 차트를 이용해서 데이터를 시각적으로 표현
 * 여러 css 애니메이션 효과
-### Architecture
-![image](https://user-images.githubusercontent.com/71905164/182599471-7262271c-a5b7-4379-8460-0a9b933a51dc.png)
 ### 실행 화면
 ![1](https://user-images.githubusercontent.com/104487608/185337073-dd08e989-2b82-4bde-9849-25d4c3a96d6e.png)
 ![2](https://user-images.githubusercontent.com/104487608/185337169-7cf88075-2f14-4afa-83ac-79b98b81bd4a.png)
