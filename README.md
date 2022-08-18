@@ -12,7 +12,7 @@
 ***
 # 🪐Project
 ### Frontend Repository
-<a href="https://github.com/cmjcum/WM_front"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
+<a href="https://github.com/cmjcum/200ok_frontend"/></a>
 ### Feature
 * JWT를 이용한 사용자 인증
 * 이미지를 style transfer와 딥페이크를 이용해서 움직이는 그림처럼 변형
@@ -33,12 +33,9 @@
 ![10](https://user-images.githubusercontent.com/104487608/185338118-ffe6b112-f5ac-402d-a8e3-9f456adfb8d1.png)
 ![11](https://user-images.githubusercontent.com/104487608/185338404-602a3354-4c19-4546-8df8-46ccbcd7bb20.png)
 
-<a href="https://cold-charcoal.tistory.com/116">영상 보러 가기(☞ﾟヮﾟ)☞</a>
+<a href="https://cold-charcoal.tistory.com/117">영상 보러 가기(☞ﾟヮﾟ)☞</a>
 ### API
-<a href="https://typingmylife.notion.site/MakeMigrations-API-88de2c1a1ccd457c9059c8b55ee3dc70">노션 페이지로 이동(☞ﾟヮﾟ)☞</a>
+<a href="https://typingmylife.notion.site/MakeMigrations-API-53526cc465344be98ab4e786e487414f">노션 페이지로 이동(☞ﾟヮﾟ)☞</a>
 ### ERD
 ![make migrations (6)](https://user-images.githubusercontent.com/71905164/182602214-7d8cf839-76d6-4d30-af03-99d5f9481137.png)
 ***
-# 🌠Credit
-* 프로젝트에 사용된 모든 가구 벡터는 <a href='https://kr.freepik.com/author/macrovector'>macrovector - kr.freepik.com가 제작함</a>
-* <a href="https://www.flaticon.com/free-icons/planet" title="planet icons">Planet icons created by Eucalyp - Flaticon</a>
