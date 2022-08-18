@@ -23,15 +23,10 @@
 * 여러 css 애니메이션 효과
 ### 실행 화면
 ![1](https://user-images.githubusercontent.com/104487608/185343990-348d6941-0075-4ab8-9d48-d239e77292b1.png)
-![2](https://user-images.githubusercontent.com/104487608/185337169-7cf88075-2f14-4afa-83ac-79b98b81bd4a.png)
-![3](https://user-images.githubusercontent.com/104487608/185337253-76a48e32-795a-4d6b-830a-9b3aa313047c.png)
-![4](https://user-images.githubusercontent.com/104487608/185337365-f25f3be5-acf2-4571-902a-b957cf6886c8.png)
-![5](https://user-images.githubusercontent.com/104487608/185337446-cf8ef780-6fdb-4ab7-b454-130295e914ae.png)
-![6](https://user-images.githubusercontent.com/104487608/185337481-6508a8ff-9348-43b0-a7bb-0eadd49ee7ec.png)
-![8](https://user-images.githubusercontent.com/104487608/185337783-58c5f8bc-4a68-4f63-9a21-66a51435a820.png)
-![9](https://user-images.githubusercontent.com/104487608/185337975-d8fdcd00-a76e-41df-bb8f-775970fd299e.png)
-![10](https://user-images.githubusercontent.com/104487608/185338118-ffe6b112-f5ac-402d-a8e3-9f456adfb8d1.png)
-![11](https://user-images.githubusercontent.com/104487608/185338404-602a3354-4c19-4546-8df8-46ccbcd7bb20.png)
+![2](https://user-images.githubusercontent.com/104487608/185344475-4786790a-ad6c-4c0e-8ef5-d285059a8376.png)
+![3](https://user-images.githubusercontent.com/104487608/185344856-6470e4d1-2423-4441-a477-8bd8cc3d54ac.png)
+![4](https://user-images.githubusercontent.com/104487608/185345234-a19afc70-d251-4d6c-941c-941138dd4aa8.png)
+![5](https://user-images.githubusercontent.com/104487608/185346135-f155e0a7-9f1b-471e-96a6-bfbe991b1305.png)
 
 <a href="https://cold-charcoal.tistory.com/117">영상 보러 가기(☞ﾟヮﾟ)☞</a>
 ### API
