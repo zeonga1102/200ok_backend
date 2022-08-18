@@ -22,7 +22,7 @@
 * 차트를 이용해서 데이터를 시각적으로 표현
 * 여러 css 애니메이션 효과
 ### 실행 화면
-![1](https://user-images.githubusercontent.com/104487608/185337073-dd08e989-2b82-4bde-9849-25d4c3a96d6e.png)
+![1](https://user-images.githubusercontent.com/104487608/185343990-348d6941-0075-4ab8-9d48-d239e77292b1.png)
 ![2](https://user-images.githubusercontent.com/104487608/185337169-7cf88075-2f14-4afa-83ac-79b98b81bd4a.png)
 ![3](https://user-images.githubusercontent.com/104487608/185337253-76a48e32-795a-4d6b-830a-9b3aa313047c.png)
 ![4](https://user-images.githubusercontent.com/104487608/185337365-f25f3be5-acf2-4571-902a-b957cf6886c8.png)
