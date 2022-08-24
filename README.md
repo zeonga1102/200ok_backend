@@ -14,7 +14,7 @@
 ***
 # Project
 ### Frontend Repository
-<a href="https://github.com/cmjcum/200ok_frontend"/></a>
+<a href="https://github.com/cmjcum/200ok_frontend"/><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 ### Feature
 * JWT를 이용한 사용자 인증
 * 이미지를 style transfer와 딥페이크를 이용해서 움직이는 그림처럼 변형
