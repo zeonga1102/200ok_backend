@@ -47,11 +47,11 @@
   <summary>기능 자세히 알아보기</summary>
   <div markdown="1">
  
-## 기능 개
-* jwt 를 이용한 회원 가입 기능 [코드 확인](https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44)
-  * 기능 설명
+## 기능 소개
+* simplejwt 를 이용한 회원 가입 기능
+   * [티스토리 참조](https://ddongkim.tistory.com/73)
 * 배포 [코드 확인](https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44)
-  * 기능 설명    
+   * 기능 설명
     
   </div>
 </details>
@@ -60,10 +60,12 @@
 
 ## 5. 트러블 슈팅
 <details>
-  <summary>트러블 슈팅 1</summary>
+  <summary>cors</summary>
   <div markdown="1">
  
-* 여기
+* 프론트의 주소와 백엔드의 주소가 달라 cors 에러가 발생했다
+* 공식 문서를 참조해서 해결 할 수 있었는데 문서 설명에 따라 settings.py 의 INSTALLED_APPS, MIDDLEWARE,  CORS_ALLOWED_ORGINS 설정을 통해 해결 할 수 있었다.
+   [티스토리 참조](https://ddongkim.tistory.com/85)
   </div>
 </details>
 
