@@ -2,33 +2,29 @@
 ![imges](https://user-images.githubusercontent.com/104487608/185346903-65a8745b-da0f-4fb9-8d4f-a9603735332b.png)
 # 녹턴앨리 B-street 지하2층 불법 입학 센터 (200ok)
 해리포터 컨셉, 사람 사진을 초상화처럼 스타일을 변경하고 움직임을 추가해서 움직이는 초상화를 만들고 머신러닝을 통해 기숙사를 분류해주는 웹사이트
-
-커뮤니티 기능 및 마이 페이지에서 방 꾸미는 기능 등
 ***
 <br><br/>
 
 
 ## 1. 개발 기간, 참여 인원
-* 개발기간: 2022.07.06 - 2022.08.16
+* 개발기간: 2022.06.28 - 2022.07.05
 * **Team** <a href="https://github.com/cmjcum"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 김동근 <a href="https://github.com/yinmsk"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 노을 <a href="https://github.com/minkkky"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 이정아 <a href="https://github.com/zeonga1102"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 이현경 <a href="https://github.com/LULULALA2"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
-* **S.A** <a href="https://cold-charcoal.tistory.com/118">블로그로 이동(☞ﾟヮﾟ)☞</a>
+* **S.A** <a href="https://cold-charcoal.tistory.com/108">블로그로 이동(☞ﾟヮﾟ)☞</a>
 ***
 <br><br/>
 
 
 ## 2. 사용 기술(버전 적기)
-* python 3.7.13
-* Django 3.2.13
-* DRF 3.13.1
+* python
+* Django
+* DRF
 * deepfake
-* docker
-* AWS
-* postgreSQL
-* javascript
+* style transfer
+* S3
  
 <br><br/>
 
@@ -39,7 +35,7 @@
 
 
 ## 4. 핵심 기능
-이 프로젝트의 핵심 기능은 000입니다.
+이 프로젝트의 핵심 기능은 딥페이크를 이용해 사진을 움직이는 초상화로 만드는 것 입니다.
 <details>
   <summary>기능 자세히 알아보기</summary>
   <div markdown="1">
