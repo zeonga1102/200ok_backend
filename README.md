@@ -47,12 +47,10 @@
   <summary>기능 자세히 알아보기</summary>
   <div markdown="1">
  
-### 4-1. 핵심 기능 구현
-핵심 기능 이미지나 글 작성
-### 4-2. 그 외의 기능 소개
-* 첫 번째 기능 이름 [코드 확인](https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44)
+## 기능 개
+* jwt 를 이용한 회원 가입 기능 [코드 확인](https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44)
   * 기능 설명
-* 두 번째 기능 이름 [코드 확인](https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44)
+* 배포 [코드 확인](https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44)
   * 기능 설명    
     
   </div>
