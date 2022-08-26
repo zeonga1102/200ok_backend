@@ -19,18 +19,14 @@
 
 
 ## 2. 사용 기술(버전 적기)
-* python
-* Django
-* DRF
-* deepfake
-* style transfer
-* S3
+* Python 3.7
+* Django REST Framework 3.13
  
 <br><br/>
 
 
 ## 3. API 명세서
-<a href="https://typingmylife.notion.site/MakeMigrations-API-88de2c1a1ccd457c9059c8b55ee3dc70">API 명세서 자료</a>
+<a href="https://typingmylife.notion.site/MakeMigrations-API-53526cc465344be98ab4e786e487414f">API 명세서 자료</a>
 <br><br/>
 
 
@@ -56,12 +52,14 @@
   <summary>simplejwt 를 이용한 회원 가입 기능 <a href="https://ddongkim.tistory.com/73">📄코드</a></summary>
   <div markdown="1">
  
-* 
+* settings.py 의 INSTALLED_APPS 에서 rest_framework_simplejwt 를 추가해 주었다.
+* REST_FRAMEWORK 의 DEFAULT_AUTHENTICATION_CLASSES 에 JWTAuthentication 을 추가해 주었다.
+* SIMPLE_JWT 를 추가해 토큰의 유효 시간을 설정해 주었다.
   </div>
 </details>
 
 <details>
-  <summary>배포 <a href="https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44">📄코드</a></summary>
+  <summary>배포 <a href="">📄코드</a></summary>
   <div markdown="1">
  
 * 시리얼라이저의 정보를 가져오고 .is_vaild() 를 통해 유효성을 검사 후 .save() 를 통해 저장 하였다.
@@ -72,12 +70,14 @@
 
 ## 7. 트러블 슈팅
 <details>
-  <summary>cors</summary>
+  <summary>cors 에러</summary>
   <div markdown="1">
  
 * 프론트의 주소와 백엔드의 주소가 달라 cors 에러가 발생했다
 * 공식 문서를 참조해서 해결 할 수 있었는데 문서 설명에 따라 settings.py 의 INSTALLED_APPS, MIDDLEWARE,  CORS_ALLOWED_ORGINS 설정을 통해 해결 할 수 있었다.
-   [티스토리 참조](https://ddongkim.tistory.com/85)
+* INSTALLED_APPS 에 cors-headers 를 추가하였다.
+* MIDDLEWARE 에 CorsMiddleware 를 추가하였다.
+* CORS_ALLOWED_ORGINS 를 추가해서, 포트를 열어주었다.
   </div>
 </details>
 
