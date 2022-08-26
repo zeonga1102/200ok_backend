@@ -18,7 +18,7 @@
 <br><br/>
 
 
-## 2. 사용 기술(버전 적기)
+## 2. 사용 기술
 * Python 3.7
 * Django REST Framework 3.13
  
