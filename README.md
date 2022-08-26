@@ -35,19 +35,7 @@
 <br><br/>
 
 
-## 5. 핵심 기능
-이 프로젝트의 핵심 기능은 딥페이크를 이용해 사진을 움직이는 초상화로 만드는 것 입니다.
-* JWT를 이용한 사용자 인증
-* 이미지를 style transfer와 딥페이크를 이용해서 움직이는 그림처럼 변형
-* 방명록 작성 및 삭제
-* 시간이 오래 걸리는 작업을 멀티 프로세싱을 이용하여 처리
-* S3를 이용한 파일 처리
-* 차트를 이용해서 데이터를 시각적으로 표현
-* 여러 css 애니메이션 효과
-<br><br/>
-
-
-## 6. 맡은 기능
+## 5. 기능 소개
 <details>
   <summary>simplejwt 를 이용한 회원 가입 기능 <a href="https://ddongkim.tistory.com/73">📄코드</a></summary>
   <div markdown="1">
@@ -59,16 +47,24 @@
 </details>
 
 <details>
-  <summary>배포 <a href="">📄코드</a></summary>
+  <summary>기숙사 테스트 문제 조회 <a href="https://github.com/zeonga1102/200ok_backend/blob/master/dormitory/views.py#L21">📄코드</a></summary>
   <div markdown="1">
  
-* 시리얼라이저의 정보를 가져오고 .is_vaild() 를 통해 유효성을 검사 후 .save() 를 통해 저장 하였다.
+* 기숙사 배정을 위한 테스트 문제들을 조회합니다.
+  </div>
+</details>
+
+<details>
+  <summary>시리얼라이저를 이용한 글 정보 조회, 작성, 삭제 기능 <a href="https://github.com/cmjcum/200ok_backend/blob/c0a96c816e61f9f074ac612a522d1fa9775928cf/lounge/views.py#L13">📄코드</a></summary>
+  <div markdown="1">
+ 
+*  시리얼라이저를 통해 라운지 페이지 띄우기, 게시글 작성 및 삭제 기능을 사용합니다.
   </div>
 </details>
 <br><br/>
 
 
-## 7. 트러블 슈팅
+## 6. 트러블 슈팅
 <details>
   <summary>cors 에러</summary>
   <div markdown="1">
@@ -80,17 +76,11 @@
 * CORS_ALLOWED_ORGINS 를 추가해서, 포트를 열어주었다.
   </div>
 </details>
-
-<details>
-  <summary>배포 트러블 슈팅</summary>
-  <div markdown="1">
- 
-* 여기
-  </div>
-</details>
 <br><br/>
 
 
-## 8. 회고 느낀점
+## 7. 회고 느낀점
 * 이번 이전에도 로그인 회원가입 기능을 했었는데 simplejwt 를 사용한 로그인 회원가입 기능은 처음이라 새로운걸 경험 할 수 있었습니다.
-* 백엔드 배포하면서 느낀점 적기
+* cors에 에러에 관해 생각해 볼 수 없었는데 cors 에러를 해결하는 방법을 알게된 점이 인상적이었습니다.
+* drf와 시리얼라이저를 처음 사용하게 되었던 프로젝트였는데 첫 사용이라 많이 어려운 프로젝트였지만 기초적인 사용법을 익힐 수 있어서 좋았습니다.
+* 새로운 경험을 많이 할 수 있었던 프로젝트여서 좋았고 drf 와 시리얼라이저 사용법을 더 많이 익혀야 겠다고 느끼게 되는 프로젝트였습니다.
