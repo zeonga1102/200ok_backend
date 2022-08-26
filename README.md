@@ -37,7 +37,7 @@
 
 ## 5. 기능 소개
 <details>
-  <summary>simplejwt 를 이용한 회원 가입 기능 <a href="https://ddongkim.tistory.com/73">📄코드</a></summary>
+  <summary>simplejwt 를 이용한 회원 가입 기능 <a href="https://ddongkim.tistory.com/73">📄코드를 정리한 글</a></summary>
   <div markdown="1">
  
 * settings.py 의 INSTALLED_APPS 에서 rest_framework_simplejwt 를 추가해 주었다.
