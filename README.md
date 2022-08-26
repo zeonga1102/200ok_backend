@@ -29,12 +29,17 @@
 <br><br/>
 
 
-## 3. ERD 설계
+## 3. API 명세서
+<a href="https://typingmylife.notion.site/MakeMigrations-API-88de2c1a1ccd457c9059c8b55ee3dc70">API 명세서 자료</a>
+<br><br/>
+
+
+## 4. ERD 설계
 ![200ok](https://user-images.githubusercontent.com/104487608/186652733-dd0af8a2-605f-446f-b993-51fb96388c0a.png)
 <br><br/>
 
 
-## 4. 핵심 기능
+## 5. 핵심 기능
 이 프로젝트의 핵심 기능은 딥페이크를 이용해 사진을 움직이는 초상화로 만드는 것 입니다.
 * JWT를 이용한 사용자 인증
 * 이미지를 style transfer와 딥페이크를 이용해서 움직이는 그림처럼 변형
@@ -43,22 +48,29 @@
 * S3를 이용한 파일 처리
 * 차트를 이용해서 데이터를 시각적으로 표현
 * 여러 css 애니메이션 효과
+<br><br/>
+
+
+## 6. 맡은 기능
 <details>
-  <summary>기능 자세히 알아보기</summary>
+  <summary>simplejwt 를 이용한 회원 가입 기능 <a href="https://ddongkim.tistory.com/73">📄코드</a></summary>
   <div markdown="1">
  
-## 기능 소개
-* simplejwt 를 이용한 회원 가입 기능
-   * [티스토리 참조](https://ddongkim.tistory.com/73)
-* 배포 [코드 확인](https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44)
-   * 기능 설명
-    
+* 
+  </div>
+</details>
+
+<details>
+  <summary>배포 <a href="https://github.com/yinmsk/WM_back/blob/739a549417f4d2bfa0fa7d6eea1c42a45d89631b/myroom/views.py#L42-L44">📄코드</a></summary>
+  <div markdown="1">
+ 
+* 시리얼라이저의 정보를 가져오고 .is_vaild() 를 통해 유효성을 검사 후 .save() 를 통해 저장 하였다.
   </div>
 </details>
 <br><br/>
 
 
-## 5. 트러블 슈팅
+## 7. 트러블 슈팅
 <details>
   <summary>cors</summary>
   <div markdown="1">
@@ -78,5 +90,9 @@
 </details>
 <br><br/>
 
-## 6. 회고 느낀점
-> 프로젝트 개발 회고 (https://github.com/yinmsk/portfolio)
+
+## 8. 회고 느낀점
+* 최종프로젝트는 기간이 길어서 여러 기능들을 구현해 볼 수 있었던 점이 가장 좋았습니다.
+* 이전에 사용하지 못했던 여러 기능들을 사용할 수 있었습니다.
+* 해킹 방지, 자바스크립트 feach 기능 등 기능을 사용할 수 있었다.
+* 전에 사용했던 기능들은 더 깊게 알게되는 시간이 되었고 사용해보지 못했던 여러 기능들도 익히는 시간이 되었다.
