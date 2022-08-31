@@ -14,7 +14,6 @@ class LoungeView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
-    # TODO  라운지 페이지 띄우기
     def get(self, request):
         user = request.user
         userinfo = User.objects.filter(id=user.id)
@@ -56,7 +55,6 @@ class LoungeView(APIView):
 
         return Response(lounge_data, status=status.HTTP_200_OK)
 
-    # TODO 게시글 쓰기
     def post(self, request):
         request.data['author'] = request.user.id
         board_serializer = BoardSerializer(data=request.data)
@@ -67,7 +65,6 @@ class LoungeView(APIView):
 
         return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    # TODO 게시글 수정
     def put(self, request, obj_id):
         comment = Board.objects.get(id=obj_id)
         board_serializer = BoardSerializer(comment, data=request.data, partial=True)
@@ -80,7 +77,6 @@ class LoungeView(APIView):
             return Response(board_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response({'message': '이 글을 작성한 사람이 아닙니다!'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # TODO 게시글 삭제
     def delete(self, request, obj_id):
         comment = Board.objects.get(id=obj_id)
 

@@ -27,7 +27,6 @@ class UserAdmin(BaseUserAdmin):
             return ('join_date', )
 
 
-# Register your models here.
 admin.site.register(UserModel, UserAdmin)
 admin.site.register(UserInfo)
 admin.site.register(OriginalPic)

@@ -16,7 +16,6 @@ from deeplearning.deeplearning_make_portrait import make_portrait
 
 class UserView(APIView):
 
-    # 회원가입
     def post(self, request):
         user_serializer = UserSerializer(data=request.data)
 
@@ -25,7 +24,6 @@ class UserView(APIView):
             return Response({"messages" : "가입 성공"})
 
         else:
-            print(serializers.errors)
             return Response({"messages" : "가입 실패"})
 
 
@@ -80,7 +78,6 @@ class InfoView(APIView):
             request.data['portrait'] = q.get()
 
             userinfo_serializer = UserInfoSerializer(data=request.data)
-            print(userinfo_serializer)
 
             if userinfo_serializer.is_valid():
                 userinfo_serializer.save()
