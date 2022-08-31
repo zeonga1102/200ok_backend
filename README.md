@@ -29,7 +29,7 @@
 <details>
 <summary>사용자가 입력한 사진에 Style Transfer, Deepfake 적용 <a href="https://github.com/zeonga1102/200ok_backend/blob/master/user/views.py#L60">📑코드</a></summary>
 
-사용자가 입력한 사진을 Style Transfer와 Deepfake를 이용해서 그림처럼 바꾸고 움직이게 했습니다. 바뀌는 스타일과 움직임은 랜덤합니다.
+사용자가 입력한 사진을 Style Transfer와 Deepfake를 이용해서 그림처럼 바꾸고 움직이게 했습니다. 바뀌는 스타일과 움직임은 랜덤합니다.<br>
 시간이 오래 걸리는 작업이므로 멀티 프로세싱을 이용하여 사용자가 이미지 변환을 긴 시간 기다리지 않아도 되도록 했습니다.
 </details>
 <details>
