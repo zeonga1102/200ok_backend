@@ -1,86 +1,61 @@
 # 200ok_backend
 ![imges](https://user-images.githubusercontent.com/104487608/185346903-65a8745b-da0f-4fb9-8d4f-a9603735332b.png)
-# 녹턴앨리 B-street 지하2층 불법 입학 센터 (200ok)
-해리포터 컨셉, 사람 사진을 초상화처럼 스타일을 변경하고 움직임을 추가해서 움직이는 초상화를 만들고 머신러닝을 통해 기숙사를 분류해주는 웹사이트
-***
-<br><br/>
+# 🔮녹턴앨리 B-street 지하2층 불법 입학 센터 (200ok)
+사진을 Style Transfer를 이용해 스타일을 변경하고 Deepfake로 움직임을 추가해서 움직이는 초상화를 만들어 호그와트의 학생증을 만들어주는 해리포터 컨셉의 웹사이트, 간단한 커뮤니티 기능 포함
 
-
-## 1. 개발 기간, 참여 인원
-* 개발기간: 2022.06.28 - 2022.07.05
-* **Team** <a href="https://github.com/cmjcum"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
-김동근 <a href="https://github.com/yinmsk"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
-노을 <a href="https://github.com/minkkky"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
-이정아 <a href="https://github.com/zeonga1102"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
-이현경 <a href="https://github.com/LULULALA2"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
+# 🧙‍♀️Intro
+* Style Transfer와 Deepfake를 이용해 사진을 움직이는 초상화로 변형
+* 기숙사 배정 테스트와 Chart로 기숙사별 학생수 및 방명록 작성수 시각화
+* **개발 기간**: 2022.06.27 ~ 2022.07.04
+* **개발 인원(4명)**: 김동근, 노을, 이정아, 이현경
+* **Team Repository** <a href="https://github.com/cmjcum/200ok_backend"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 * **S.A** <a href="https://cold-charcoal.tistory.com/108">블로그로 이동(☞ﾟヮﾟ)☞</a>
-***
-<br><br/>
 
+# 🧙‍♂️Project
+### Frontend Repository
+<a href="https://github.com/cmjcum/200ok_frontend"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
 
-## 2. 사용 기술
+### 사용 기술
 * Python 3.7
 * Django REST Framework 3.13
- 
-<br><br/>
 
+### 핵심 기능
+* Style Transfer와 Deepfake를 이용한 이미지 변형
+* JWT를 이용한 사용자 인증
+* 라운지 페이지에서 방명록 CRUD
+* Chart를 이용한 데이터 시각화
 
-## 3. API 명세서
-<a href="https://typingmylife.notion.site/MakeMigrations-API-53526cc465344be98ab4e786e487414f">API 명세서 자료</a>
-<br><br/>
+### 맡은 부분
+<details>
+<summary>사용자가 입력한 사진에 Style Transfer, Deepfake 적용 <a href="https://github.com/zeonga1102/200ok_backend/blob/master/user/views.py#L60">📑코드</a></summary>
 
+사용자가 입력한 사진을 Style Transfer와 Deepfake를 이용해서 그림처럼 바꾸고 움직이게 했습니다. 바뀌는 스타일과 움직임은 랜덤합니다.
+시간이 오래 걸리는 작업이므로 멀티 프로세싱을 이용하여 사용자가 이미지 변환을 긴 시간 기다리지 않아도 되도록 했습니다.
+</details>
+<details>
+<summary>기숙사 테스트 문제 조회 <a href="https://github.com/zeonga1102/200ok_backend/blob/master/dormitory/views.py#L21">📑코드</a></summary>
 
-## 4. ERD 설계
+기숙사 배정을 위한 테스트 문제들을 조회합니다.
+</details>
+<details>
+<summary>사용자 정보 저장 <a href="https://github.com/zeonga1102/200ok_backend/blob/master/user/views.py#L71">📑코드</a></summary>
+
+테스트를 통한 기숙사 정보를 비롯해 사용자가 입력한 정보와 변형한 이미지 url을 저장합니다.
+</details>
+
+### ERD
 ![200ok](https://user-images.githubusercontent.com/104487608/186652733-dd0af8a2-605f-446f-b993-51fb96388c0a.png)
-<br><br/>
 
+# 🛠Troubleshooting
+### ImportError: cannot import name 'PILLOW_VERSION' from 'PIL'
+pillow의 버전이 높아서 발생하는 에러입니다. pillow의 버전을 6.2.2로 낮춰서 해결했습니다.
 
-## 5. 기능 소개
-<details>
-  <summary>simplejwt 를 이용한 회원 가입 기능 <a href="https://ddongkim.tistory.com/73">📄코드를 정리한 글</a></summary>
-  <div markdown="1">
- 
-* settings.py 의 INSTALLED_APPS 에서 rest_framework_simplejwt 를 추가해 주었다.
-* REST_FRAMEWORK 의 DEFAULT_AUTHENTICATION_CLASSES 에 JWTAuthentication 을 추가해 주었다.
-* SIMPLE_JWT 를 추가해 토큰의 유효 시간을 설정해 주었다.
-  </div>
-</details>
+# 🖋회고
+이번 프로젝트는 다른게 아니라 딥러닝을 프로젝트에 적용하는 것부터가 힘들었다. DRF로 처음 프로젝트를 진행하는건 괜찮았는데 Style Transfer와 Deepfake를 어떤 식으로 써야하나 감이 잘 안 잡혔다. 그래도 무사히 적용해서 다행이었다. 지금은 사진을 변형할 때 Deepfake를 먼저 하고 Style Transfer를 뒤에 적용했는데 생각해보니 반대 순서로 하는게 실행 속도가 빨랐을 것 같다.
+사실 사용자들의 기숙사를 분류할 때도 머신러닝을 적용하고 싶었다. 영화 해리포터에 출연한 배우들의 얼굴로 분류 모델을 만들어서 모델을 통한 분류 결과와 테스트 결과를 적절히 섞어 사용자들의 기숙사를 배정하려 했다. 기간도 짧고 프로젝트 초반에 헤매기도 해서 이것까지 하기에는 시간이 부족했다. 이 기능까지 됐으면 더 좋았을 것 같아서 아쉽다.
+나 말고 다른 팀원들도 새롭게 해보는 기능이 많고 프로젝트 기간도 짧다보니 다들 고생이 많았다. 그래도 고생한만큼 특색있는 결과물을 만들 수 있었던 것 같다. 배포는 최종적으로는 실패했지만 이번 실패를 밑거름 삼아 다음에는 배포까지 마칠 수 있도록 해야겠다.
+[팀 회고 보러가기(☞ﾟヮﾟ)☞](https://cold-charcoal.tistory.com/116)
 
-<details>
-  <summary>기숙사 테스트 문제 조회 <a href="https://github.com/zeonga1102/200ok_backend/blob/master/dormitory/views.py#L21">📄코드</a></summary>
-  <div markdown="1">
- 
-* 기숙사 배정을 위한 테스트 문제들을 조회합니다.
-  </div>
-</details>
-
-<details>
-  <summary>시리얼라이저를 이용한 글 정보 조회, 작성, 삭제 기능 <a href="https://github.com/cmjcum/200ok_backend/blob/c0a96c816e61f9f074ac612a522d1fa9775928cf/lounge/views.py#L13">📄코드</a></summary>
-  <div markdown="1">
- 
-*  시리얼라이저를 통해 라운지 페이지 띄우기, 게시글 작성 및 삭제 기능을 사용합니다.
-  </div>
-</details>
-<br><br/>
-
-
-## 6. 트러블 슈팅
-<details>
-  <summary>cors 에러</summary>
-  <div markdown="1">
- 
-* 프론트의 주소와 백엔드의 주소가 달라 cors 에러가 발생했다
-* 공식 문서를 참조해서 해결 할 수 있었는데 문서 설명에 따라 settings.py 의 INSTALLED_APPS, MIDDLEWARE,  CORS_ALLOWED_ORGINS 설정을 통해 해결 할 수 있었다.
-* INSTALLED_APPS 에 cors-headers 를 추가하였다.
-* MIDDLEWARE 에 CorsMiddleware 를 추가하였다.
-* CORS_ALLOWED_ORGINS 를 추가해서, 포트를 열어주었다.
-  </div>
-</details>
-<br><br/>
-
-
-## 7. 회고 느낀점
-* 이번 이전에도 로그인 회원가입 기능을 했었는데 simplejwt 를 사용한 로그인 회원가입 기능은 처음이라 새로운걸 경험 할 수 있었습니다.
-* cors에 에러에 관해 생각해 볼 수 없었는데 cors 에러를 해결하는 방법을 알게된 점이 인상적이었습니다.
-* drf와 시리얼라이저를 처음 사용하게 되었던 프로젝트였는데 첫 사용이라 많이 어려운 프로젝트였지만 기초적인 사용법을 익힐 수 있어서 좋았습니다.
-* 새로운 경험을 많이 할 수 있었던 프로젝트여서 좋았고 drf 와 시리얼라이저 사용법을 더 많이 익혀야 겠다고 느끼게 되는 프로젝트였습니다.
+# ✨Credit
+* Style Transfer pre-trained models <a href="https://github.com/ycjing/Neural-Style-Transfer-Papers"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
+* 딥페이크 코드 <a href="https://github.com/AliaksandrSiarohin/first-order-model"><img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=github&logoColor=white"/></a>
